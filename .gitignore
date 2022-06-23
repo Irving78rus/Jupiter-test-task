@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 */.css.map
-
+NavigationCategory.css.map
 # testing
 /coverage
 
