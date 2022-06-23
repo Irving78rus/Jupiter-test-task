@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Jupiter-test-task/static/css/main.a62b45f3.css",
+    "main.js": "/Jupiter-test-task/static/js/main.543b5352.js",
+    "static/js/787.1ed0c42c.chunk.js": "/Jupiter-test-task/static/js/787.1ed0c42c.chunk.js",
+    "static/media/5.png": "/Jupiter-test-task/static/media/5.a2ad952fb92149a07463.png",
+    "static/media/7.png": "/Jupiter-test-task/static/media/7.b28a979381532ce35f1c.png",
+    "static/media/1.png": "/Jupiter-test-task/static/media/1.e7744b61250da8be8688.png",
+    "static/media/9.png": "/Jupiter-test-task/static/media/9.21ebedfcae0f909740c8.png",
+    "static/media/4.png": "/Jupiter-test-task/static/media/4.550f48ab70b150f88040.png",
+    "static/media/6.png": "/Jupiter-test-task/static/media/6.331cee806d3e2597935f.png",
+    "static/media/2.png": "/Jupiter-test-task/static/media/2.10bcd0192b612d0ea4ed.png",
+    "static/media/3.png": "/Jupiter-test-task/static/media/3.2812eacad39ecb4bc6e5.png",
+    "static/media/8.png": "/Jupiter-test-task/static/media/8.53e44a91035cfb9fbe51.png",
+    "index.html": "/Jupiter-test-task/index.html",
+    "main.a62b45f3.css.map": "/Jupiter-test-task/static/css/main.a62b45f3.css.map",
+    "main.543b5352.js.map": "/Jupiter-test-task/static/js/main.543b5352.js.map",
+    "787.1ed0c42c.chunk.js.map": "/Jupiter-test-task/static/js/787.1ed0c42c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a62b45f3.css",
+    "static/js/main.543b5352.js"
+  ]
+}
