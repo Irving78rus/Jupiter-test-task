@@ -4,7 +4,7 @@ import CardItem from "../../cardItem/CardItem";
 import { filterOptions } from "../../../helpers/filterOptions";
 import CategorySelector from "../categorySelector/CategorySelector";
 import {cardsLimit} from '../../../helpers/config'
-const Main = ({ items }) => {
+const List = ({ items }) => {
   
   const [skip, setSkip] = useState(0);
   const [cardsList, setСardsList] = useState(items.slice(skip, skip+cardsLimit));
@@ -97,4 +97,4 @@ const Main = ({ items }) => {
   );
 };
 
-export default Main;
+export default List;
