@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./list.css";
 import CardItem from "../../cardItem/CardItem";
-import { filterOptions, cardsLimit } from "../../../helpers/constant"
+import { filterOptions, cardsLimit } from '../../../helpers/constant'
 import CategorySelector from "../categorySelector/CategorySelector";
 let skip = 0;
 const List = ({ items }) => {
@@ -9,7 +9,6 @@ const List = ({ items }) => {
     items.slice(skip, skip + cardsLimit)
   );
 
-  // Высчитываем какую часть массива нам вырезать, чтобы добавить в рендер
   const loadMore = () => {
     if (skip < items.length) {
       skip += cardsLimit;
@@ -20,8 +19,6 @@ const List = ({ items }) => {
     }
   };
 
-  // Добавляем новый кусок данных в рендер
-
   const [selectItem, setSelectItem] = useState([]);
   const [activeCategory, setActiveCategory] = useState(filterOptions.SHOW_ALL);
   const categories = Object.values(filterOptions);
@@ -29,7 +26,6 @@ const List = ({ items }) => {
     setActiveCategory(category);
   };
 
-  //Функция выбора карточек
   const selectCard = (id) => {
     if (selectItem.includes(id)) {
       setSelectItem(selectItem.filter((item) => item !== id));
@@ -38,13 +34,11 @@ const List = ({ items }) => {
     }
   };
 
-  //Функция удаление выбранных карточек
   const deleteCard = () => {
     setСardsList(cardsList.filter((item) => !selectItem.includes(item.id)));
     setSelectItem([]);
   };
 
-  // Удаление карточек по клавише delete
   const handlerPressDelete = (e) => {
     e.stopPropagation();
     if (e.key === "Delete") {
@@ -83,15 +77,11 @@ const List = ({ items }) => {
           tabIndex="0"
           onKeyUp={(e) => handlerPressDelete(e)}
         >
-         
-          {cardsList.map((item) => {
-            if (
-              activeCategory === filterOptions.SHOW_ALL ||
-              item.category === activeCategory
-            ) {
-              return renderCardItem(item);
-            }
 
+          {cardsList.map((item) => {
+            if (activeCategory === filterOptions.SHOW_ALL || item.category === activeCategory)
+              return renderCardItem(item);
+              
             return null;
           })}
         </div>
