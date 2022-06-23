@@ -83,12 +83,7 @@ const List = ({ items }) => {
           tabIndex="0"
           onKeyUp={(e) => handlerPressDelete(e)}
         >
-          {/* {activeCategory === filterOptions.SHOW_ALL
-            ? cardsList.map((item) => renderCardItem(item))
-            : cardsList
-              .filter((item) => item.category === activeCategory)
-              .map((item) => renderCardItem(item))} */}
-
+         
           {cardsList.map((item) => {
             if (
               activeCategory === filterOptions.SHOW_ALL ||
