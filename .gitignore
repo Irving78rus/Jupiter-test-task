@@ -5,10 +5,11 @@
 /.pnp
 .pnp.js
 */.css.map
- /src/components/cardItem/cardItem.css.map
- /src/components/header/header.css.map
-  /src/components/main/NavigationCategory/NavigationCategory.css.map
-  /src/components/main/main.css.map
+/src/components/cardItem/cardItem.css.map
+/src/components/header/header.css.map
+/src/components/main/NavigationCategory/NavigationCategory.css.map
+/src/components/main/main.css.map
+/src/App.css.map
 
 # testing
 /coverage
