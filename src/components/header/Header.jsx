@@ -16,10 +16,7 @@ const Header = () => {
             {/* По хорошему тут NavLink надо использовать, но качать библиотеку
                      ради псевдо использования не надо */}
             {nav.map((item, index) => (
-              <a href="#" key={index}>
-                {item}
-              </a>
-            ))}
+              <a href="#" key={index}>{item}</a>))}
           </div>
           <div className="header__contact-btn">contact</div>
         </div>

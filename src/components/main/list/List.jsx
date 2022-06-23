@@ -1,29 +1,32 @@
-import React, { useState  } from "react";
+import React, { useState } from "react";
 import "./list.css";
 import CardItem from "../../cardItem/CardItem";
-import { filterOptions } from "../../../helpers/filterOptions";
+import { filterOptions, cardsLimit } from "../../../helpers/constant"
 import CategorySelector from "../categorySelector/CategorySelector";
-import {cardsLimit} from '../../../helpers/config'
+let skip = 0;
 const List = ({ items }) => {
-  
-  const [skip, setSkip] = useState(0);
-  const [cardsList, setСardsList] = useState(items.slice(skip, skip+cardsLimit));
+  const [cardsList, setСardsList] = useState(
+    items.slice(skip, skip + cardsLimit)
+  );
 
   // Высчитываем какую часть массива нам вырезать, чтобы добавить в рендер
   const loadMore = () => {
     if (skip < items.length) {
-      setSkip((prev) => prev + cardsLimit);
-      setСardsList((prev) => [...prev, ...items.slice(skip, skip+cardsLimit)]);
-  }
+      skip += cardsLimit;
+      setСardsList((prev) => [
+        ...prev,
+        ...items.slice(skip, skip + cardsLimit),
+      ]);
+    }
   };
+
   // Добавляем новый кусок данных в рендер
-  
 
   const [selectItem, setSelectItem] = useState([]);
-  const [category, setCategory] = useState(filterOptions.SHOW_ALL);
-  const nav = Object.values(filterOptions);
-  const handleSelectCategory = (event) => {
-    setCategory(event.target.value);
+  const [activeCategory, setActiveCategory] = useState(filterOptions.SHOW_ALL);
+  const categories = Object.values(filterOptions);
+  const handleSelectCategory = (category) => {
+    setActiveCategory(category);
   };
 
   //Функция выбора карточек
@@ -37,9 +40,7 @@ const List = ({ items }) => {
 
   //Функция удаление выбранных карточек
   const deleteCard = () => {
-    setСardsList(
-      cardsList.filter((item) => !selectItem.includes(item.id))
-    );
+    setСardsList(cardsList.filter((item) => !selectItem.includes(item.id)));
     setSelectItem([]);
   };
 
@@ -49,7 +50,6 @@ const List = ({ items }) => {
     if (e.key === "Delete") {
       deleteCard();
     }
-   
   };
 
   const renderCardItem = (item) => {
@@ -57,7 +57,7 @@ const List = ({ items }) => {
       <CardItem
         key={item.id}
         filterCategory={(item) => {
-          setCategory(item);
+          setActiveCategory(item);
         }}
         photo={item.src}
         category={item.category}
@@ -73,21 +73,32 @@ const List = ({ items }) => {
     <main className="main">
       <div className="main__wrapper">
         <CategorySelector
-          category={category}
-          nav={nav}
-          setCategory={setCategory}
-          handleSelect={handleSelectCategory}
+          activeCategory={activeCategory}
+          categories={categories}
+          filterOptions={filterOptions}
+          handleSelectCategory={handleSelectCategory}
         />
         <div
           className="main__container"
           tabIndex="0"
           onKeyUp={(e) => handlerPressDelete(e)}
         >
-          {category === filterOptions.SHOW_ALL
+          {/* {activeCategory === filterOptions.SHOW_ALL
             ? cardsList.map((item) => renderCardItem(item))
             : cardsList
-                .filter((item) => item.category === category)
-                .map((item) => renderCardItem(item))}
+              .filter((item) => item.category === activeCategory)
+              .map((item) => renderCardItem(item))} */}
+
+          {cardsList.map((item) => {
+            if (
+              activeCategory === filterOptions.SHOW_ALL ||
+              item.category === activeCategory
+            ) {
+              return renderCardItem(item);
+            }
+
+            return null;
+          })}
         </div>
       </div>
       <button className="load-more" onClick={loadMore}>

@@ -2,12 +2,8 @@ import React from "react";
 import "./cardItem.css";
 import { useState } from "react";
 const CardItem = ({
-  photo,
-  category,
-  name,
-  active,
-  onClick,
-  filterCategory,
+  photo,  category,  name,
+  active,  onClick,  filterCategory,
 }) => {
   const [press, setPress] = useState(active);
 
@@ -18,16 +14,16 @@ const CardItem = ({
   return (
     <div
       className={
-        press ? "card card__wrapper card__active" : "card card__wrapper"
+        press
+          ? "card card__wrapper card__active"
+          : "card card__wrapper"
       }
       onClick={click}
     >
       <img src={photo} alt="anyPhoto" />
       <div
         className="card__category"
-        onClick={() => {
-          filterCategory(category);
-        }}
+        onClick={() => { filterCategory(category) }}
       >
         {category}
       </div>

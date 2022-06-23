@@ -1,9 +1,10 @@
-.nav {
+.filter {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #707070;
 }
-.nav__select {
+.filter__select {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,15 +12,15 @@
   gap: 30px;
 }
 @media (max-width: 1039.98px) {
-  .nav__select {
+  .filter__select {
     display: none;
   }
 }
-.nav__select div:hover {
+.filter__category:hover {
   color: rgba(0, 0, 0, 0.4117647059);
   cursor: pointer;
 }
-.nav__select-mobile {
+.filter__select-mobile {
   margin: 30px 0;
   width: 80%;
   height: 48px;
@@ -28,10 +29,13 @@
   outline: 0;
 }
 @media (min-width: 1039.98px) {
-  .nav__select-mobile {
+  .filter__select-mobile {
     display: none;
   }
 }
-.nav-active {
+.filter_active {
+  color: #90e149;
+}
+.filter_active:hover {
   color: #90e149;
 }/*# sourceMappingURL=CategorySelector.css.map */

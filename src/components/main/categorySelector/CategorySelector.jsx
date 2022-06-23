@@ -1,33 +1,30 @@
-import React  from "react";
+import React from "react";
 import "./CategorySelector.css";
-const CategorySelector = ({ category, nav, setCategory, handleSelect }) => {
+const CategorySelector = ({ activeCategory, categories, handleSelectCategory }) => {
   return (
-    <nav className="nav">
-      <div className="nav__select">
-        {nav.map(item => (
+    <section className="filter">
+      <div className="filter__select">
+        {categories.map(item => (
           <div
             key={item}
-            className={category === item ? "nav-active" : null}
-            onClick={() => {
-              setCategory(item);
-            }}
+            className={activeCategory === item 
+              ? "filter__category filter_active " 
+              : "filter__category"}
+            onClick={() => { handleSelectCategory(item) }}
           >
             {item}
           </div>
         ))}
       </div>
       <select
-        className="nav__select-mobile"
-        value={category}
-        onChange={handleSelect}
+        className="filter__select-mobile"
+        value={activeCategory}
+        onChange={(event) => { handleSelectCategory(event.target.value) }}
       >
-        <option value="Show All">Show All</option>
-        <option value="Design">Design</option>
-        <option value="Branding">Branding</option>
-        <option value="Illustration">Illustration</option>
-        <option value="Motion">Motion</option>
+        {categories.map(item => <option value={item} key={item}>{item}</option>)}
+
       </select>
-    </nav>
+    </section>
   );
 };
 

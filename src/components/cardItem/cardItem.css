@@ -2,6 +2,7 @@
   width: 371px;
   height: 416px;
   position: relative;
+  color: #707070;
 }
 .card__wrapper {
   display: flex;

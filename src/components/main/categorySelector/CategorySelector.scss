@@ -1,9 +1,10 @@
 $breakpoint1040: 1039.98px;
 
-.nav {
+.filter {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #707070;
 
     &__select {
         display: flex;
@@ -17,12 +18,11 @@ $breakpoint1040: 1039.98px;
         }
     }
 
-    &__select {
-        div:hover {
-            color: #00000069;
-            cursor: pointer;
-        }
+    &__category:hover {
+        color: #00000069;
+        cursor: pointer;
     }
+
 
     &__select-mobile {
         margin: 30px 0;
@@ -37,7 +37,12 @@ $breakpoint1040: 1039.98px;
         }
     }
 
-    &-active {
+    &_active {
+        color: #90e149;
+
+    }
+
+    &_active:hover {
         color: #90e149;
     }
 }

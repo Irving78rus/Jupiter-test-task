@@ -2,6 +2,7 @@
   width: 371px;
   height: 416px;
   position: relative;
+  color: #707070;
 
   &__wrapper {
     display: flex;
@@ -9,6 +10,7 @@
     align-items: center;
     flex-wrap: wrap;
   }
+
   img {
     width: 100%;
     height: auto;
@@ -25,6 +27,7 @@
     bottom: 130px;
     left: 50px;
   }
+
   &__category:hover {
     background-color: rgba(255, 255, 255, 0.864);
     cursor: pointer;
@@ -37,6 +40,7 @@
     bottom: 55px;
     left: 50px;
   }
+
   &__active {
     border: 5px solid #4fe24a;
     border-radius: 10px;

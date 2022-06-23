@@ -5,3 +5,4 @@ export const  filterOptions ={
     ILLUSTRATION:"Illustration",
     MOTION:"Motion"
 }
+export const cardsLimit = 9;
