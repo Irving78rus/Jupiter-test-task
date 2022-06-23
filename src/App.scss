@@ -1,5 +1,5 @@
-$containerWidth: 1440+px;
-$breakpoint1040: 1039.98px+px;
+$containerWidth: 1440 + px;
+$breakpoint1040: 1039.98px + px;
 
 * {
     margin: 0;
@@ -10,10 +10,7 @@ $breakpoint1040: 1039.98px+px;
     list-style-type: none;
     font-size: 16px;
 }
-.container{
+
+.container {
     margin: 0 auto;
-    
-    @media (max-width:$breakpoint1040) {
-                   
-            }
 }

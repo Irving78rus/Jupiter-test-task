@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from "react";
-import "./main.css";
-import CardItem from "./../cardItem/CardItem";
-import { filterOptions } from "../../helpers/filterOptions";
-import CategorySelector from "./NavigationCategory/CategorySelector";
-// config numbersCards Приходит откуда-то из вне
-const cardsLimit = 9;
+import React, { useState  } from "react";
+import "./list.css";
+import CardItem from "../../cardItem/CardItem";
+import { filterOptions } from "../../../helpers/filterOptions";
+import CategorySelector from "../categorySelector/CategorySelector";
+import {cardsLimit} from '../../../helpers/config'
 const Main = ({ items }) => {
-  const [cardsList, setСardsList] = useState([]);
-  const [skip, setSkip] = useState(0);
   
+  const [skip, setSkip] = useState(0);
+  const [cardsList, setСardsList] = useState(items.slice(skip, skip+cardsLimit));
 
   // Высчитываем какую часть массива нам вырезать, чтобы добавить в рендер
   const loadMore = () => {
     if (skip < items.length) {
       setSkip((prev) => prev + cardsLimit);
-       
+      setСardsList((prev) => [...prev, ...items.slice(skip, skip+cardsLimit)]);
   }
   };
   // Добавляем новый кусок данных в рендер
-  useEffect(() => {
-    setСardsList((prev) => [...prev, ...items.slice(skip, skip+cardsLimit)]);
-  }, [skip,items]);
+  
 
   const [selectItem, setSelectItem] = useState([]);
   const [category, setCategory] = useState(filterOptions.SHOW_ALL);
