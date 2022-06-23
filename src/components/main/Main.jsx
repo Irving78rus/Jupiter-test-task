@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "./main.css";
 import CardItem from "./../cardItem/CardItem";
+import { filterOptions } from "../../helpers/filterOptions";
+import NavigationCategory from "./NavigationCategory/NavigationCategory";
 // config numbersCards Приходит откуда-то из вне
-const numbersCards = 9
+const cardsLimit = 9;
 const Main = ({ items }) => {
-  const [listForRender, setListForRender] = useState([]);
-  const [start, setStart] = useState(0);
-  const [end, setEnd] = useState(numbersCards);
- 
+  const [cardsList, setСardsList] = useState([]);
+  const [skip, setSkip] = useState(0);
+  
 
   // Высчитываем какую часть массива нам вырезать, чтобы добавить в рендер
   const loadMore = () => {
-    if (end < items.length) {
-      setStart((prev) => prev + numbersCards);
-      setEnd((prev) => prev + numbersCards);
-    }
+    if (skip < items.length) {
+      setSkip((prev) => prev + cardsLimit);
+       
+  }
   };
   // Добавляем новый кусок данных в рендер
   useEffect(() => {
-    setListForRender((prev) => [...prev, ...items.slice(start, end)]);
-  }, [end]);
- 
+    setСardsList((prev) => [...prev, ...items.slice(skip, skip+cardsLimit)]);
+  }, [skip,items]);
 
-  const [category, setCategory] = useState("Show All");
   const [selectItem, setSelectItem] = useState([]);
-  const nav = ["Show All", "Design", "Branding", "Illustration", "Motion"];
-  const handleSelect = (event) => {
+  const [category, setCategory] = useState(filterOptions.SHOW_ALL);
+  const nav = Object.values(filterOptions);
+  const handleSelectCategory = (event) => {
     setCategory(event.target.value);
   };
 
   //Функция выбора карточек
-  const select = (id) => {
+  const selectCard = (id) => {
     if (selectItem.includes(id)) {
       setSelectItem(selectItem.filter((item) => item !== id));
     } else {
@@ -40,87 +40,57 @@ const Main = ({ items }) => {
 
   //Функция удаление выбранных карточек
   const deleteCard = () => {
-    setListForRender(
-      listForRender.filter((item) => !selectItem.includes(item.id))
+    setСardsList(
+      cardsList.filter((item) => !selectItem.includes(item.id))
     );
     setSelectItem([]);
   };
 
-// Удаление карточек по клавише delete
-  const handlerKey = (e) => {
+  // Удаление карточек по клавише delete
+  const handlerPressDelete = (e) => {
+    e.stopPropagation();
     if (e.key === "Delete") {
       deleteCard();
     }
-    e.stopPropagation();
+   
   };
 
+  const renderCardItem = (item) => {
+    return (
+      <CardItem
+        key={item.id}
+        filterCategory={(item) => {
+          setCategory(item);
+        }}
+        photo={item.src}
+        category={item.category}
+        name={item.name}
+        onClick={() => {
+          selectCard(item.id);
+        }}
+        active={false}
+      />
+    );
+  };
   return (
     <main className="main">
       <div className="main__wrapper">
-        <div className="main__nav">
-          <div className="main__select">
-            {nav.map((item, index) => (
-              <div
-                key={index}
-                className={category === item ? "main__nav_active" : null}
-                onClick={() => {
-                  setCategory(item);
-                }}
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-          <select
-            className="main__select-mobile"
-            value={category}
-            onChange={handleSelect}
-          >
-            <option value="Show All">Show All</option>
-            <option value="Design">Design</option>
-            <option value="Branding">Branding</option>
-            <option value="Illustration">Illustration</option>
-            <option value="Motion">Motion</option>
-          </select>
-        </div>
+        <NavigationCategory
+          category={category}
+          nav={nav}
+          setCategory={setCategory}
+          handleSelect={handleSelectCategory}
+        />
         <div
           className="main__container"
           tabIndex="0"
-          onKeyUp={(e) => handlerKey(e)}
+          onKeyUp={(e) => handlerPressDelete(e)}
         >
-          {category === "Show All"
-            ? listForRender.map((item) => (
-                <CardItem
-                  key={item.id}
-                  filterCategory={(item) => {
-                    setCategory(item);
-                  }}
-                  photo={item.src}
-                  category={item.category}
-                  name={item.name}
-                  onClick={() => {
-                    select(item.id);
-                  }}
-                  active={false}
-                />
-              ))
-            : listForRender
+          {category === filterOptions.SHOW_ALL
+            ? cardsList.map((item) => renderCardItem(item))
+            : cardsList
                 .filter((item) => item.category === category)
-                .map((item) => (
-                  <CardItem
-                    key={item.id}
-                    filterCategory={(item) => {
-                      setCategory(item);
-                    }}
-                    photo={item.src}
-                    onClick={() => {
-                      select(item.id);
-                    }}
-                    active={false}
-                    category={item.category}
-                    name={item.name}
-                  />
-                ))}
+                .map((item) => renderCardItem(item))}
         </div>
       </div>
       <button className="load-more" onClick={loadMore}>
