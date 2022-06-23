@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./main.css";
 import CardItem from "./../cardItem/CardItem";
 import { filterOptions } from "../../helpers/filterOptions";
-import NavigationCategory from "./NavigationCategory/NavigationCategory";
+import CategorySelector from "./NavigationCategory/CategorySelector";
 // config numbersCards Приходит откуда-то из вне
 const cardsLimit = 9;
 const Main = ({ items }) => {
@@ -75,7 +75,7 @@ const Main = ({ items }) => {
   return (
     <main className="main">
       <div className="main__wrapper">
-        <NavigationCategory
+        <CategorySelector
           category={category}
           nav={nav}
           setCategory={setCategory}

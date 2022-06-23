@@ -1,6 +1,6 @@
 import React  from "react";
-import "./NavigationCategory.css";
-const NavigationCategory = ({ category, nav, setCategory, handleSelect }) => {
+import "./CategorySelector.css";
+const CategorySelector = ({ category, nav, setCategory, handleSelect }) => {
   return (
     <nav className="nav">
       <div className="nav__select">
@@ -31,4 +31,4 @@ const NavigationCategory = ({ category, nav, setCategory, handleSelect }) => {
   );
 };
 
-export default NavigationCategory;
+export default CategorySelector;
